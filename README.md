@@ -1,1 +1,1 @@
-"# cocos-game" 
+cocos-game 
