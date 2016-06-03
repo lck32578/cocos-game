@@ -1,3 +1,4 @@
+
 #include "Pipe.h"
 #include "Definitions.h"
 
@@ -11,14 +12,61 @@ Pipe::Pipe( )
 
 void Pipe::SpawnPipe( cocos2d::Layer *layer )
 {
-    CCLOG( "SPAWN PIPE" );
+    CCLOG( "SPAWN MONSTER" );
     
+    
+    /*
     auto topPipe = Sprite::create( "obstacle_up.png" );
     auto bottomPipe = Sprite::create( "obstacle_down.png" );
     
     auto topPipeBody = PhysicsBody::createBox( topPipe->getContentSize( ) );
     auto bottomPipeBody = PhysicsBody::createBox( bottomPipe->getContentSize( ) );
+    */
+    srand(time(NULL));
+	Sprite* m;
+	PhysicsBody*mb;
+	MoveBy *mAction;
+	int type= rand()%4; // 0 云 1 山 2 鸟
+	double mPos = 0;
+	if(type== 0) {
+		m = Sprite::create("cloud.png");
+		mb = PhysicsBody::createBox( m->getContentSize());
+		m->setPosition(visibleSize.width, visibleSize.height-50-rand() % 120);
+		//mPos = rand() % ((int)visibleSize.height - 100) + 80;
+		mAction = MoveBy::create( CLOUD_MOVEMENT_SPEED * visibleSize.width, Point( -visibleSize.width * 1.5, 0 ) );
+	} else if(type== 1) {
+		m = Sprite::create("mount.png");
+		m->setScale(5.0f);
+		mb = PhysicsBody::createBox( m->getContentSize());
+		m->setPosition(visibleSize.width, 100);
+		//mPos = 20;
+		mAction = MoveBy::create( MOUNT_MOVEMENT_SPEED * visibleSize.width, Point( -visibleSize.width * 1.5, 0 ) );
+	} else if(type== 2) {
+		m = Sprite::create("mbird.png");
+		mb = PhysicsBody::createBox( m->getContentSize());
+		m->setPosition(visibleSize.width, visibleSize.height -80- rand() % 150);
+		//mPos = rand() % ((int)visibleSize.height - 100) + 50;
+		mAction = MoveBy::create( MBIRD_MOVEMENT_SPEED * visibleSize.width, Point( -visibleSize.width * 1.5, 0 ) );
+	} 
+	
+	
+	if(type<3) {
+	    
+    	mb->setDynamic( false );
+    	mb->setCollisionBitmask( OBSTACLE_COLLISION_BITMASK );
+        mb->setContactTestBitmask( true );
+        layer->addChild( m );
+        m->runAction( mAction );
+	}
+	
+	//monsters.push_back(m);
+	//addChild(monsters);
+	
     
+    
+    
+
+    /*
     auto random = CCRANDOM_0_1( );
     
     if ( random < LOWER_SCREEN_PIPE_THRESHOLD )
@@ -29,7 +77,8 @@ void Pipe::SpawnPipe( cocos2d::Layer *layer )
     {
         random = UPPER_SCREEN_PIPE_THRESHOLD;
     }
-    
+    */
+    /*
     auto topPipePosition = ( random * visibleSize.height ) + ( topPipe->getContentSize( ).height / 2 );
     
     topPipeBody->setDynamic( false );
@@ -39,7 +88,8 @@ void Pipe::SpawnPipe( cocos2d::Layer *layer )
     bottomPipeBody->setCollisionBitmask( OBSTACLE_COLLISION_BITMASK );
     topPipeBody->setContactTestBitmask( true );
     bottomPipeBody->setContactTestBitmask( true );
-    
+    */
+    /*
     topPipe->setPhysicsBody( topPipeBody );
     bottomPipe->setPhysicsBody( bottomPipeBody );
     
@@ -48,13 +98,22 @@ void Pipe::SpawnPipe( cocos2d::Layer *layer )
     
     layer->addChild( topPipe );
     layer->addChild( bottomPipe );
+    */
     
+    
+    /*
     auto topPipeAction = MoveBy::create( PIPE_MOVEMENT_SPEED * visibleSize.width, Point( -visibleSize.width * 1.5, 0 ) );
     auto bottomPipeAction = MoveBy::create( PIPE_MOVEMENT_SPEED * visibleSize.width, Point( -visibleSize.width * 1.5, 0 ) );
     
     topPipe->runAction( topPipeAction );
     bottomPipe->runAction( bottomPipeAction );
+    */
+
     
+    
+    
+    
+    /*
     auto pointNode = Node::create( );
     auto pointBody = PhysicsBody::createBox( Size( 1, Sprite::create( "Ball.png" )->getContentSize( ).height * PIPE_GAP ) );
     
@@ -67,9 +126,11 @@ void Pipe::SpawnPipe( cocos2d::Layer *layer )
     
     layer->addChild( pointNode );
     
+    
     auto pointNodeAction = MoveBy::create( PIPE_MOVEMENT_SPEED * visibleSize.width, Point( -visibleSize.width * 1.5, 0 ) );
     
     pointNode->runAction( pointNodeAction );
+    */
 }
 
 
