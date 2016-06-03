@@ -18,14 +18,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
-    /*if(!glview) {
+    if(!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) 
 	glview = GLViewImpl::create("Flappy Bird Clone. By Sonar Systems");
 #else
 	glview = GLView::create("My Game");
 #endif
         director->setOpenGLView(glview);
-    }*/
+    }
     
     // turn on display FPS
     director->setDisplayStats(true);

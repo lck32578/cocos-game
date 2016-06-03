@@ -53,7 +53,8 @@ bool GameScene::init()
     
     this->schedule( schedule_selector( GameScene::SpawnPipe ), PIPE_SPAWN_FREQUENCY * visibleSize.width );
     
-    bird = new Bird( this );
+    bird = Bird::create();
+	addChild(bird);
     
     auto contactListener = EventListenerPhysicsContact::create( );
     contactListener->onContactBegin = CC_CALLBACK_1( GameScene::onContactBegin, this );
