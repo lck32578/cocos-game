@@ -1,9 +1,9 @@
-#include "Bird.h"
+#include "Player.h"
 #include "Definitions.h"
 
 USING_NS_CC;
 
-bool Bird::init() {
+bool Player::init() {
 	if (!Sprite::init()) {
 		return false;
 	}
@@ -32,7 +32,7 @@ bool Bird::init() {
 	return true;
 }
 
-void Bird::Fall( )
+void Player::Fall( )
 {
     if ( true == isFalling )
     {

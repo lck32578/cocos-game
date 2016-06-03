@@ -5,12 +5,10 @@
 
 USING_NS_CC;
 
-class Bird : public Sprite
+class Player : public Sprite
 {
 public:
-	//Bird(cocos2d::Layer *layer);
-
-	CREATE_FUNC(Bird);
+	CREATE_FUNC(Player);
 	virtual bool init();
 
     void Fall( );
