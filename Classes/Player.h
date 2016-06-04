@@ -3,11 +3,14 @@
 
 #include "cocos2d.h"
 
-class Bird
+USING_NS_CC;
+
+class Player : public Sprite
 {
 public:
-    Bird( cocos2d::Layer *layer );
-    
+	CREATE_FUNC(Player);
+	virtual bool init();
+
     void Fall( );
     void Fly( ) { isFalling = false; };
     void StopFlying( ) { isFalling = true; }
@@ -15,8 +18,6 @@ public:
 private:
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
-    
-    cocos2d::Sprite *flappyBird;
     
     bool isFalling;
     

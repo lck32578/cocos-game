@@ -3,7 +3,7 @@
 
 #include "cocos2d.h"
 #include "Pipe.h"
-#include "Bird.h"
+#include "Player.h"
 
 class GameScene : public cocos2d::Layer
 {
@@ -33,7 +33,7 @@ private:
     
     Pipe pipe;
     
-    Bird *bird;
+	Player *player;
     
     unsigned int score;
     

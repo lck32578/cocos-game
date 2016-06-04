@@ -53,7 +53,8 @@ bool GameScene::init()
     
     this->schedule( schedule_selector( GameScene::SpawnPipe ), PIPE_SPAWN_FREQUENCY * visibleSize.width );
     
-    bird = new Bird( this );
+    player = Player::create();
+	addChild(player);
     
     auto contactListener = EventListenerPhysicsContact::create( );
     contactListener->onContactBegin = CC_CALLBACK_1( GameScene::onContactBegin, this );
@@ -109,7 +110,7 @@ bool GameScene::onContactBegin( cocos2d::PhysicsContact &contact )
 
 bool GameScene::onTouchBegan( cocos2d::Touch *touch, cocos2d::Event *event )
 {
-    bird->Fly( );
+	player->Fly( );
     
     this->scheduleOnce( schedule_selector( GameScene::StopFlying ), BIRD_FLY_DURATION );
     
@@ -118,12 +119,12 @@ bool GameScene::onTouchBegan( cocos2d::Touch *touch, cocos2d::Event *event )
 
 void GameScene::StopFlying( float dt )
 {
-    bird->StopFlying( );
+	player->StopFlying( );
 }
 
 void GameScene::update( float dt )
 {
-    bird->Fall( );
+	player->Fall( );
 }
 
 
